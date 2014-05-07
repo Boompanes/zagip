@@ -6,11 +6,11 @@ Progress 10%
 
 Lead Programmers: 
 Jelly De Ocampo
-Emman Delos Santos
 
 Spectators:
 Nelbin Bayaua
 Adrian Enriquez
+Emman Delos Santos
 
 =================
 
