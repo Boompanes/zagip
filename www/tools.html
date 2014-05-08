@@ -1,0 +1,34 @@
+<html>
+<head>
+<link rel="stylesheet" href="css/mobile-angular-ui-base.min.css"><link rel="stylesheet" href="css/mobile-angular-ui-desktop.min.css"><script src="js/angular.js">
+</script><script src="js/angular-route.js"></script><script src="js/mobile-angular-ui.min.js">
+</script><script src="js/mobile-angular-ui-touch-fastclick.min.js">
+</script><script src="js/mobile-angular-ui-scrollable-overthrow.min.js">
+</script><script src="js/tools.js">
+
+</script>
+</head>
+<body ng-app="tools">
+<!-- Sidebars -->
+
+
+<div class="app" style="background-color:white;" >
+  
+  <!-- Navbars -->
+  <div class="navbar navbar-app navbar-absolute-top">
+
+      <div class="navbar-brand navbar-brand-center" yield-to="title">
+        <span>Tools</span>
+      </div>
+
+      
+  </div>
+
+
+  <div class="app-body">
+ <ng-view class="app-content" >
+     </ng-view>
+</div>
+</div>
+</body>
+</html>
