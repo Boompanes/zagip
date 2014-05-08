@@ -9,10 +9,10 @@ Jelly De Ocampo
 
 Spectators:
 Adrian Enriquez
-Emman Delos Santos
 
 Moral Support/Extreme Burden:
 Nelbin Bayaua
+Emman Delos Santos
 
 =================
 

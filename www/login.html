@@ -1,0 +1,78 @@
+<!doctype html>
+<html ng-app="firebaseangularapp">
+<head>
+    <script type="text/javascript" src="vendor/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="vendor/angular/angular.min.js"></script>
+    <script type="text/javascript" src="vendor/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="vendor/firebase/firebase.js"></script>
+    <script type="text/javascript" src="vendor/firebase/firebase-simple-login.js"></script>
+    <script type="text/javascript" src="vendor/angularfire/angularfire.min.js"></script>
+    <script type="text/javascript" src="js/firebaseangularapp.js"></script>
+    <script type="text/javascript" src="js/firebasemodule.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap-theme.min.css">
+</head>
+<body onload="firebaseangularmain.initialize()" ng-controller="LoginCtrl">
+<div id="login" ng-if="!logged">
+
+    <div>
+        <div class="loginerror">
+            <div ng-show="error != null" class="alert alert-danger alert-dismissable">
+                <strong>Error!</strong> {{error.message}}
+            </div>
+        </div>
+        <form class="form-horizontal" role="form">
+            <div ng-class="emailFieldClasses">
+                <label for="labelLoginEmail" class="col-sm-2 control-label">Email address</label>
+
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="inputLoginEmail" placeholder="Enter email"
+                           ng-model="useremail">
+                </div>
+            </div>
+            <div ng-class="passwordFieldClasses">
+                <label for="labelLoginPassword" class="col-sm-2 control-label">Password</label>
+
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputLoginPassword" placeholder="Password"
+                           ng-model="userpassword">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default btn-lg" ng-click="login()"><span
+                            class="glyphicon glyphicon-log-in"></span> Login
+                    </button>
+                </div>
+            </div>
+        </form>
+        <a href="/">Home</a>
+    </div>
+</div>
+<div id="output" ng-if="logged">
+    <header id="headercontainer">
+        <div class="left-header">
+
+            <div class="app-title"></div>
+        </div>
+        <div ng-repeat="user in users">
+            <span>{{user.name}}</span><span>{{user.age}}</span>
+        </div>
+        <span class="glyphicon glyphicon-log-out btn-lg tool-icon" ng-click="logout()"></span>
+    </header>
+    <div id="main" class="maincontainer" ng-controller="MainCtrl">
+        <div id="maincontent" class="content">
+            <p>{{title}}</p>
+
+            <p>{{text}}</p>
+
+            <p>{{welcome}} {{user.email}}</p>
+        </div>
+    </div>
+    <script type="text/javascript">firebaseangularmain.initialize()</script>
+</div>
+</body>
+</html>

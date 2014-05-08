@@ -1,69 +1,79 @@
-<!doctype html>
-<html ng-app="firebaseangularapp">
-  <head>
-	<script type="text/javascript" src="vendor/jquery/jquery-2.0.3.min.js"></script>
-	<script type="text/javascript" src="vendor/angular/angular.min.js"></script>
-	<script type="text/javascript" src="vendor/angular/angular-route.min.js"></script>
-    <script type="text/javascript" src="vendor/firebase/firebase.js"></script>
-    <script type="text/javascript" src="vendor/firebase/firebase-simple-login.js"></script>
-    <script type="text/javascript" src="vendor/angularfire/angularfire.min.js"></script>
-	<script type="text/javascript" src="js/firebaseangularapp.js"></script>
-        <script type="text/javascript" src="js/firebasemodule.js"></script>
-          <script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript" src="vendor/bootstrap/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap-theme.min.css">
-  </head>
-  <body onload="firebaseangularmain.initialize()" ng-controller="LoginCtrl">
-    <div id="login" ng-if="!logged">
+<!DOCTYPE html>
+<html>
 
-        <div>
-            <div class="loginerror">
-                <div ng-show="error != null" class="alert alert-danger alert-dismissable">
-                    <strong>Error!</strong> {{error.message}}
-                </div>
+<head>
+  <meta charset="utf-8" />
+  <base href="/" />
+  <title>Zagip</title>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+
+  <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+  
+  <link rel="stylesheet" href="vendor/mobile-ui/css/mobile-angular-ui-base.min.css" />
+  <link rel="stylesheet" href="vendor/mobile-ui/css/mobile-angular-ui-desktop.min.css" />
+
+  <link rel="stylesheet" href="css/mobile-ui.css" />
+
+  <script src="vendor/angular/angular.min.js"></script>
+  <script src="vendor/angular/angular-route.min.js"></script>
+  <script src="vendor/mobile-ui/mobile-angular-ui.min.js"></script>
+  <script src="vendor/mobile-ui/mobile-angular-ui-touch-fastclick.min.js"></script>
+  <script src="vendor/mobile-ui/mobile-angular-ui-scrollable-overthrow.min.js"></script>
+
+  <script src="js/app.js"></script>
+</head>
+
+<body ng-app="MyApp" ng-controller="MainController">
+
+  <div ng-include="'partials/sidebarLeft.html'" class="sidebar sidebar-left" toggleable parent-active-class="sidebar-left-in" id="mainSidebar"></div>
+
+  <div ng-include="'partials/sidebarRight.html'" class="sidebar sidebar-right" toggleable parent-active-class="sidebar-right-in" id="rightSidebar"></div>
+
+  <div class="app">
+    <!-- Navbar -->
+    <div class="navbar navbar-app navbar-absolute-top">
+
+        <div class="navbar-brand navbar-brand-center" yield-to="title">
+            <span>Status</span>
+        </div>
+
+        <div class="btn-group pull-left">
+            <div ng-click="toggle('mainSidebar')" class="btn btn-navbar sidebar-toggle">
+                <i class="fa fa-bars"></i>
             </div>
-            <form class="form-horizontal" role="form">
-                <div ng-class="emailFieldClasses">
-                    <label for="labelLoginEmail" class="col-sm-2 control-label">Email address</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputLoginEmail" placeholder="Enter email" ng-model="useremail">
-                    </div>
-                </div>
-                <div ng-class="passwordFieldClasses">
-                    <label for="labelLoginPassword" class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputLoginPassword" placeholder="Password" ng-model="userpassword">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-default btn-lg" ng-click="login()"><span class="glyphicon glyphicon-log-in"></span> Login</button>
-                    </div>
-                </div>
-            </form>
+        </div>
+
+        <div class="btn-group pull-right" yield-to="navbarAction">
+            <div ng-click="toggle('rightSidebar')" class="btn btn-navbar">
+                <i class="fa fa-bell"></i>
+            </div>
         </div>
     </div>
-	<div id="output" ng-if="logged">
-		<header id="headercontainer">
-			<div class="left-header">
-		
-				<div class="app-title"></div>
-			</div>
-            <div ng-repeat="user in users">
-                <span>{{user.name}}</span><span>{{user.age}}</span>
-            </div>
-			<span class="glyphicon glyphicon-log-out btn-lg tool-icon" ng-click="logout()"></span>
-		</header>
-        <div id="main" class="maincontainer" ng-controller="MainCtrl">
-            <div id="maincontent" class="content">
-                <p>{{title}}</p>
-                <p>{{text}}</p>
-                <p>{{welcome}} {{user.email}}</p>
-            </div>
+
+    <div class="app-body" ng-class="{loading: loading}">
+        <div ng-show="loading" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
         </div>
-        <script type="text/javascript">firebaseangularmain.initialize()</script>
-	</div>
-  </body>
+        <ng-view class="app-content" ng-hide="loading"></ng-view>
+      </div>
+    </div>
+
+  <div overlay="overlay1" default="active">
+      <h4 class="overlay-title">Merging in progress</h4>
+      <p>
+          Choose one for now
+      </p>
+      <p toggle="off" bubble target="overlay1">
+          <a href="/login.html"><span class="btn btn-primary">Login</span></a>
+          <span class="btn btn-default">Home</span>
+      </p>
+  </div>
+
+  </div>
+</body>
+
 </html>
