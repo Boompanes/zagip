@@ -8,9 +8,11 @@ Lead Programmers:
 Jelly De Ocampo
 
 Spectators:
-Nelbin Bayaua
 Adrian Enriquez
 Emman Delos Santos
+
+Moral Support/Extreme Burden:
+Nelbin Bayaua
 
 =================
 
